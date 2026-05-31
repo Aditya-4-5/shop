@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pani Puri Wala - Mr. Chhotelal Gond</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Yatra+One&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --yellow:#FFB703;
+      --orange:#FB8500;
+      --dark:#0d0d0d;
+      --card:#161616;
+      --green:#2a9d3f;
+      --red:#e63946;
+      --light:#fff8ee;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Baloo 2',cursive;background:var(--dark);color:#fff;overflow-x:hidden;}
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar{width:6px;}
+    ::-webkit-scrollbar-track{background:#111;}
+    ::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:10px;}
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .ann-bar{
+      background:linear-gradient(90deg,var(--orange),var(--yellow),var(--orange));
+      color:#111;text-align:center;padding:8px;font-size:14px;font-weight:700;
+      animation:marquee 20s linear infinite;
+      white-space:nowrap;overflow:hidden;
+    }
+    @keyframes marquee{0%{background-position:0%}100%{background-position:100%}}
+
+    /* ── NAV ── */
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:16px 60px;background:rgba(10,10,10,0.97);
+      position:sticky;top:0;z-index:999;
+      border-bottom:2px solid var(--orange);
+      backdrop-filter:blur(10px);
+    }
+    .logo{font-family:'Yatra One',cursive;font-size:30px;color:var(--yellow);letter-spacing:1px;}
+    .logo span{color:var(--orange);}
+    .nav-links a{
+      color:#eee;text-decoration:none;margin-left:26px;font-weight:600;font-size:15px;
+      transition:color .2s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;
+      background:var(--yellow);transition:width .3s;
+    }
+    .nav-links a:hover{color:var(--yellow);}
+    .nav-links a:hover::after{width:100%;}
+    .order-btn{
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      color:#111;padding:10px 24px;border-radius:30px;font-weight:800;
+      text-decoration:none;margin-left:24px;font-size:14px;
+      transition:transform .2s,box-shadow .2s;
+      box-shadow:0 4px 15px rgba(251,133,0,0.4);
+    }
+    .order-btn:hover{transform:scale(1.06);box-shadow:0 6px 20px rgba(251,133,0,0.6);}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:92vh;display:flex;align-items:center;
+      justify-content:space-between;padding:60px 60px 40px;
+      background:linear-gradient(135deg,#0d0d0d 50%,#1a0a00 100%);
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;top:-100px;right:-100px;
+      width:500px;height:500px;border-radius:50%;
+      background:radial-gradient(circle,rgba(251,133,0,0.15),transparent 70%);
+    }
+    .badge{
+      display:inline-block;background:rgba(251,133,0,0.15);
+      border:1px solid var(--orange);color:var(--orange);
+      padding:6px 18px;border-radius:30px;font-size:13px;font-weight:700;
+      margin-bottom:16px;letter-spacing:1px;
+    }
+    .hero-text h1{
+      font-family:'Yatra One',cursive;font-size:78px;
+      background:linear-gradient(135deg,var(--yellow),var(--orange));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      line-height:1.05;margin-bottom:16px;
+    }
+    .hero-text .tagline{font-size:20px;color:#ddd;font-weight:600;margin-bottom:24px;line-height:1.6;}
+    .hero-text .tagline span{color:var(--yellow);}
+    .hero-stats{display:flex;gap:32px;margin-bottom:32px;}
+    .stat{text-align:center;}
+    .stat .num{font-family:'Yatra One',cursive;font-size:30px;color:var(--yellow);}
+    .stat .lbl{font-size:12px;color:#aaa;font-weight:600;}
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      color:#111;padding:14px 34px;border-radius:40px;
+      font-weight:800;font-size:16px;text-decoration:none;
+      transition:transform .2s,box-shadow .2s;
+      box-shadow:0 4px 20px rgba(251,133,0,0.5);
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(251,133,0,0.6);}
+    .btn-outline{
+      border:2px solid var(--yellow);color:var(--yellow);
+      padding:14px 34px;border-radius:40px;font-weight:800;font-size:16px;
+      text-decoration:none;transition:all .2s;
+    }
+    .btn-outline:hover{background:var(--yellow);color:#111;}
+
+    /* Hero image section */
+    .hero-right{position:relative;flex-shrink:0;}
+    .hero-main-img{
+      width:460px;height:380px;object-fit:cover;
+      border-radius:30px 10px 30px 10px;
+      border:3px solid var(--orange);
+      box-shadow:0 20px 60px rgba(251,133,0,0.3);
+      animation:float 4s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .hero-badge-img{
+      position:absolute;bottom:-20px;left:-30px;
+      background:var(--yellow);color:#111;
+      border-radius:50%;width:100px;height:100px;
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:center;font-weight:800;font-size:13px;
+      text-align:center;line-height:1.2;
+      box-shadow:0 8px 20px rgba(0,0,0,0.4);
+      border:3px solid #fff;animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+    /* ── MARQUEE STRIP ── */
+    .strip{
+      background:linear-gradient(90deg,var(--orange),var(--yellow));
+      color:#111;padding:14px 0;overflow:hidden;white-space:nowrap;
+    }
+    .strip-inner{display:inline-block;animation:stripScroll 18s linear infinite;}
+    @keyframes stripScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .strip span{margin:0 30px;font-weight:800;font-size:16px;font-family:'Yatra One',cursive;}
+
+    /* ── ABOUT ── */
+    .about{
+      padding:80px 60px;
+      background:linear-gradient(135deg,#111 0%,#1a0a00 100%);
+      display:flex;gap:60px;align-items:center;
+    }
+    .about-imgs{position:relative;flex-shrink:0;}
+    .about-img1{
+      width:300px;height:340px;object-fit:cover;
+      border-radius:20px;border:3px solid var(--yellow);
+      box-shadow:0 15px 40px rgba(0,0,0,0.5);
+    }
+    .about-img2{
+      position:absolute;bottom:-30px;right:-40px;
+      width:180px;height:180px;object-fit:cover;
+      border-radius:16px;border:3px solid var(--orange);
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+    .about-content h2{font-family:'Yatra One',cursive;font-size:42px;color:var(--yellow);margin-bottom:6px;}
+    .about-content .sub{color:var(--orange);font-size:16px;font-weight:700;margin-bottom:18px;}
+    .about-content p{color:#ccc;font-size:16px;line-height:1.9;margin-bottom:20px;}
+    .owner-card{
+      display:flex;align-items:center;gap:16px;
+      background:rgba(255,183,3,0.1);border:2px solid var(--yellow);
+      border-radius:16px;padding:16px 24px;margin-top:10px;
+    }
+    .owner-avatar{
+      width:60px;height:60px;border-radius:50%;
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      display:flex;align-items:center;justify-content:center;
+      font-size:28px;flex-shrink:0;
+    }
+    .owner-info h4{color:var(--yellow);font-size:17px;font-weight:800;}
+    .owner-info p{color:#aaa;font-size:13px;}
+
+    /* ── FEATURES ── */
+    .features{padding:80px 60px;background:#0d0d0d;text-align:center;}
+    .section-title{font-family:'Yatra One',cursive;font-size:42px;color:var(--yellow);margin-bottom:10px;}
+    .section-sub{color:#aaa;font-size:16px;margin-bottom:44px;}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+    .feature-card{
+      background:var(--card);border:2px solid #222;border-radius:20px;
+      padding:32px 20px;transition:all .35s;position:relative;overflow:hidden;
+    }
+    .feature-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--orange),var(--yellow));
+      transform:scaleX(0);transition:transform .35s;
+    }
+    .feature-card:hover{border-color:var(--yellow);transform:translateY(-8px);box-shadow:0 15px 40px rgba(255,183,3,0.15);}
+    .feature-card:hover::before{transform:scaleX(1);}
+    .feature-card .icon{font-size:48px;margin-bottom:16px;}
+    .feature-card h3{color:var(--yellow);font-size:17px;margin-bottom:8px;font-weight:700;}
+    .feature-card p{color:#888;font-size:14px;line-height:1.6;}
+
+    /* ── GALLERY ── */
+    .gallery{padding:80px 60px;background:#111;}
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      grid-template-rows:auto auto;
+      gap:16px;margin-top:44px;
+    }
+    .gallery-item{border-radius:16px;overflow:hidden;position:relative;cursor:pointer;}
+    .gallery-item:first-child{grid-row:span 2;}
+    .gallery-item img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform .4s;display:block;
+      min-height:200px;
+    }
+    .gallery-item:hover img{transform:scale(1.07);}
+    .gallery-item .overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+      opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:16px;
+    }
+    .gallery-item:hover .overlay{opacity:1;}
+    .overlay span{color:#fff;font-weight:700;font-size:15px;}
+
+    /* ── MENU ── */
+    .menu{padding:80px 60px;background:#0d0d0d;}
+    .menu-filter{display:flex;gap:12px;justify-content:center;margin-bottom:36px;flex-wrap:wrap;}
+    .filter-btn{
+      border:2px solid #333;color:#aaa;background:none;
+      padding:8px 22px;border-radius:30px;cursor:pointer;font-size:14px;
+      font-family:'Baloo 2',cursive;font-weight:600;transition:all .2s;
+    }
+    .filter-btn.active,.filter-btn:hover{
+      border-color:var(--yellow);color:#111;background:var(--yellow);
+    }
+    .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+    .menu-card{
+      background:var(--card);border-radius:20px;overflow:hidden;
+      border:2px solid #222;transition:all .35s;
+    }
+    .menu-card:hover{border-color:var(--orange);transform:translateY(-8px);box-shadow:0 15px 40px rgba(251,133,0,0.15);}
+    .menu-card .thumb{
+      height:200px;overflow:hidden;position:relative;
+    }
+    .menu-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+    .menu-card:hover .thumb img{transform:scale(1.08);}
+    .menu-card .thumb .tag{
+      position:absolute;top:12px;right:12px;
+      background:var(--orange);color:#fff;
+      padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;
+    }
+    .menu-card .tag.veg{background:var(--green);}
+    .menu-card .info{padding:20px;}
+    .menu-card .info h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:6px;}
+    .menu-card .info p{color:#888;font-size:13px;margin-bottom:14px;line-height:1.5;}
+    .menu-card .info .bottom{display:flex;justify-content:space-between;align-items:center;}
+    .menu-card .info .price{
+      color:var(--yellow);font-size:22px;font-weight:800;font-family:'Yatra One',cursive;
+    }
+    .spice-tag{font-size:12px;color:var(--orange);font-weight:700;}
+
+    /* ── COUNTER SECTION ── */
+    .counters{
+      padding:70px 60px;
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      color:#111;text-align:center;
+    }
+    .counter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:20px;}
+    .counter-item .num{
+      font-family:'Yatra One',cursive;font-size:52px;font-weight:400;
+    }
+    .counter-item .lbl{font-size:16px;font-weight:700;opacity:0.8;}
+
+    /* ── RATINGS ── */
+    .ratings{padding:80px 60px;background:#111;text-align:center;}
+    .rating-summary{
+      display:flex;justify-content:center;align-items:center;gap:60px;
+      background:var(--card);border:2px solid var(--yellow);border-radius:24px;
+      padding:40px 60px;max-width:750px;margin:0 auto 50px;
+    }
+    .big-score{font-family:'Yatra One',cursive;font-size:80px;color:var(--yellow);line-height:1;}
+    .stars-big{font-size:28px;margin:8px 0;}
+    .total-reviews{color:#888;font-size:14px;}
+    .bars{text-align:left;}
+    .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:14px;}
+    .bar-label{color:#ccc;width:22px;font-weight:600;}
+    .bar-track{width:170px;height:10px;background:#2a2a2a;border-radius:10px;overflow:hidden;}
+    .bar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--orange),var(--yellow));transition:width 1s;}
+    .bar-count{color:#888;font-size:12px;}
+
+    /* Review Form */
+    .review-form{
+      max-width:600px;margin:0 auto 50px;background:var(--card);
+      border:2px solid #2a2a2a;border-radius:24px;padding:36px;
+    }
+    .review-form h3{color:var(--yellow);font-size:22px;margin-bottom:22px;font-family:'Yatra One',cursive;}
+    .star-select{display:flex;gap:8px;margin-bottom:18px;font-size:36px;cursor:pointer;}
+    .star-select span{color:#333;transition:color .15s,transform .15s;display:inline-block;}
+    .star-select span:hover,.star-select span.active{color:var(--yellow);transform:scale(1.2);}
+    .review-form input,.review-form textarea{
+      width:100%;background:#1e1e1e;border:2px solid #2a2a2a;color:#fff;
+      padding:13px 18px;border-radius:12px;font-size:15px;margin-bottom:14px;
+      font-family:'Baloo 2',cursive;outline:none;transition:border-color .2s;
+    }
+    .review-form input:focus,.review-form textarea:focus{border-color:var(--yellow);}
+    .review-form textarea{height:110px;resize:none;}
+    .review-form button{
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      color:#111;border:none;padding:13px 36px;border-radius:30px;
+      font-weight:800;font-size:16px;cursor:pointer;transition:transform .2s;
+      font-family:'Baloo 2',cursive;
+    }
+    .review-form button:hover{transform:scale(1.04);}
+
+    /* Customer Reviews */
+    .customer-reviews{padding:0 60px 80px;background:#111;}
+    .customer-reviews h3{
+      color:var(--yellow);font-family:'Yatra One',cursive;font-size:32px;margin-bottom:28px;
+    }
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+    .review-card{
+      background:var(--card);border:2px solid #1e1e1e;border-radius:18px;
+      padding:24px;transition:border-color .3s,transform .3s;
+    }
+    .review-card:hover{border-color:var(--yellow);transform:translateY(-4px);}
+    .reviewer{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+    .avatar{
+      width:48px;height:48px;border-radius:50%;
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#111;font-size:18px;flex-shrink:0;
+    }
+    .reviewer-name{color:#fff;font-weight:700;font-size:15px;}
+    .reviewer-date{color:#666;font-size:12px;}
+    .review-stars{color:var(--yellow);font-size:16px;margin-bottom:10px;}
+    .review-text{color:#aaa;font-size:14px;line-height:1.7;}
+
+    /* ── SPECIAL OFFER ── */
+    .offer{
+      padding:80px 60px;
+      background:linear-gradient(135deg,#1a0500,#0d0d0d);
+      text-align:center;
+    }
+    .offer-box{
+      max-width:700px;margin:0 auto;
+      background:linear-gradient(135deg,rgba(251,133,0,0.15),rgba(255,183,3,0.1));
+      border:2px solid var(--orange);border-radius:30px;padding:50px 40px;
+      position:relative;overflow:hidden;
+    }
+    .offer-box::before{
+      content:'🌶️';font-size:120px;position:absolute;
+      right:-20px;top:-20px;opacity:0.08;
+    }
+    .offer-box h2{font-family:'Yatra One',cursive;font-size:42px;color:var(--yellow);margin-bottom:12px;}
+    .offer-box p{color:#ccc;font-size:17px;margin-bottom:28px;line-height:1.7;}
+    .offer-box .discount{
+      font-family:'Yatra One',cursive;font-size:60px;
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+
+    /* ── CONTACT ── */
+    .contact{padding:80px 60px;background:#0d0d0d;}
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+    .contact-left h2{font-family:'Yatra One',cursive;font-size:42px;color:var(--yellow);margin-bottom:12px;}
+    .contact-left p{color:#aaa;font-size:16px;line-height:1.8;margin-bottom:30px;}
+    .contact-cards{display:flex;flex-direction:column;gap:16px;}
+    .contact-card{
+      display:flex;align-items:center;gap:18px;
+      background:var(--card);border:2px solid #222;border-radius:16px;
+      padding:20px 24px;transition:border-color .3s;
+    }
+    .contact-card:hover{border-color:var(--yellow);}
+    .contact-card .c-icon{
+      width:52px;height:52px;border-radius:14px;
+      background:linear-gradient(135deg,var(--orange),var(--yellow));
+      display:flex;align-items:center;justify-content:center;
+      font-size:24px;flex-shrink:0;
+    }
+    .contact-card h4{color:var(--yellow);font-size:14px;margin-bottom:4px;font-weight:700;}
+    .contact-card p{color:#ccc;font-size:15px;font-weight:600;}
+    .contact-card a{color:#ccc;text-decoration:none;}
+    .map-box{
+      border-radius:20px;overflow:hidden;border:3px solid var(--orange);
+      height:340px;background:#1a1a1a;display:flex;align-items:center;
+      justify-content:center;flex-direction:column;gap:12px;
+    }
+    .map-box .map-emoji{font-size:60px;}
+    .map-box p{color:#888;font-size:15px;}
+    .map-box a{color:var(--yellow);font-weight:700;text-decoration:none;}
+
+    /* ── FOOTER ── */
+    footer{
+      background:#080808;color:#666;text-align:center;
+      padding:28px;border-top:2px solid #1a1a1a;font-size:13px;
+    }
+    footer .logo-ft{font-family:'Yatra One',cursive;font-size:22px;color:var(--yellow);margin-bottom:8px;}
+    footer span{color:var(--orange);}
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float{
+      position:fixed;bottom:28px;right:28px;z-index:9999;
+      background:#25d366;color:#fff;border-radius:50%;
+      width:58px;height:58px;display:flex;align-items:center;justify-content:center;
+      font-size:28px;text-decoration:none;
+      box-shadow:0 6px 20px rgba(37,211,102,0.5);
+      animation:bounce 2s infinite;
+    }
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    /* ── MOBILE ── */
+    @media(max-width:900px){
+      nav{padding:14px 20px;}
+      .nav-links{display:none;}
+      .hero{flex-direction:column;padding:40px 20px;text-align:center;}
+      .hero-text h1{font-size:50px;}
+      .hero-main-img{width:100%;height:260px;}
+      .hero-right{width:100%;margin-top:30px;}
+      .hero-badge-img{display:none;}
+      .hero-stats{justify-content:center;}
+      .about,.features,.gallery,.menu,.ratings,.customer-reviews,.contact,.offer{padding:50px 20px;}
+      .about{flex-direction:column;}
+      .about-imgs{width:100%;}
+      .about-img1{width:100%;height:260px;}
+      .about-img2{display:none;}
+      .feature-grid,.menu-grid,.reviews-grid{grid-template-columns:1fr 1fr;}
+      .gallery-grid{grid-template-columns:1fr 1fr;}
+      .gallery-item:first-child{grid-row:span 1;}
+      .counter-grid{grid-template-columns:repeat(2,1fr);}
+      .rating-summary{flex-direction:column;padding:28px;}
+      .contact-wrap{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="ann-bar">
+  🌶️ GRAND OFFER — FREE Extra Puri! &nbsp;|&nbsp; 
+  📞 Order Now: 9918438523 &nbsp;|&nbsp; 
+  ⭐ Kamla Nagar Ka #1 Pani Puri Stall &nbsp;|&nbsp;
+  🕓 Open Daily: 4 PM – 9 PM &nbsp;|&nbsp;
+  🌿 100% Fresh & Hygienic
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">🫙 Pani<span>Puri</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#menu">Menu</a>
+    <a href="#ratings">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="tel:9918438523" class="order-btn">📞 Call & Order</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="badge">✨ Kamla Nagar Ka Asli Swad</div>
+    <h1>The Authentic<br/>Pani Puri</h1>
+    <p class="tagline">
+      Ek bite mein <span>hazaron flavors!</span><br/>
+      Crispy • Spicy • Tangy • Chatpata
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">500+</div><div class="lbl">Daily Customers</div></div>
+      <div class="stat"><div class="num">4.8★</div><div class="lbl">Rating</div></div>
+      <div class="stat"><div class="num">10+</div><div class="lbl">Years Experience</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">🍽️ Menu Dekhein</a>
+      <a href="tel:9918438523" class="btn-outline">📞 Order Karein</a>
+    </div>
+  </div>
+
+   <div class="hero-right">
+
+    <!-- Hero Image -->
+  <img src="../logo.png"
+     alt="Pani Puri"
+     class="hero-main-img">
+</div>
+
+<style>
+.hero-right{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero-main-img{
+    width:100%;
+    max-width:700px;
+    height:auto;
+    display:block;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.hero-badge-img{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#f5b400;
+    color:#111;
+    font-weight:700;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    border:4px solid #fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+</style>
+</div>
+
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>🍫 Meetha Puri</span>
+    <span>🧆 Masala Puri</span>
+    <span>🫙 Classic Pani Puri</span>
+    <span>🍫 Meetha Puri</span>
+    <span>🧆 Masala Puri</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-imgs">
+    <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=500&q=80" 
+         alt="Pani Puri" class="about-img1"/>
+    <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&q=80" 
+         alt="Pani Puri Close" class="about-img2"/>
+  </div>
+  <div class="about-content">
+    <h2>Hamara Parichay</h2>
+    <div class="sub">🌟 Kamla Nagar ki Shaan — Authentic Street Food Since 2000</div>
+    <p>Hamare yahan sirf khana nahi, yadein milti hain! Har puri haath se banai jaati hai — sabse umda atta, taaza masale, aur generations se chali aa rahi recipes. Hamare teen tarah ke paani — Teekha Pudina, Meetha Imli, aur Special Masala — aapke mooh mein paani la denge!</p>
+    <p>Swachhta hamaari pehli zimmedaari hai. Har cheez roz taaze lagaai jaati hai. Aiye aur khud mehsoos karein Kamla Nagar ke asli pani puri ka swad!</p>
+    <div class="owner-card">
+      <div class="owner-avatar">👨‍🍳</div>
+      <div class="owner-info">
+        <h4>👑 Mr. Chhotelal Gond</h4>
+        <p>Owner & Head Chef | 30+ Years of Expertise</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <h2 class="section-title">Hum Kyun Khaas Hain?</h2>
+  <p class="section-sub">Hamare yahan sirf swad nahi, bharosa bhi milta hai</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon">🌿</div>
+      <h3>Taaze Ingredients</h3>
+      <p>Roz subah taaze masale aur paani tayaar kiya jaata hai. Koi bhi cheez basi nahi.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🏆</div>
+      <h3>Asli Taste</h3>
+      <p>Purani recipe, authentic masala — Lucknow ki asli gali ka swad aapke paas!</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🌶️</div>
+      <h3>Teekha Customize Karein</h3>
+      <p>Halka se lekar bahut teekha — aap bolein, hum banayein aapke hisaab se!</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">💰</div>
+      <h3>Affordable Prices</h3>
+      <p>Dum daar swad, pocket-friendly daam. ₹20 se shuru hota hai maza!</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🧼</div>
+      <h3>100% Hygienic</h3>
+      <p>Saaf haath, saaf bartan, saaf paani. Swasthya hamaari zimmedaari hai.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">👨‍👩‍👧‍👦</div>
+      <h3>Har Umar Ke Liye</h3>
+      <p>Bachche ho ya buzurg, sabke liye swad — sweet, spicy aur sab kuch beech mein!</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">⚡</div>
+      <h3>Fast Service</h3>
+      <p>Bina zyada wait kiye — jaldi aur khushi se serve kiya jaata hai har plate.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">❤️</div>
+      <h3>Bana Hai Pyaar Se</h3>
+      <p>Chhotelal ji ka pyaar aur mehnat har puri mein dikhta hai — try karo ek baar!</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <h2 class="section-title" style="text-align:center;">Photo Gallery 📸</h2>
+  <p class="section-sub" style="text-align:center;">Hamare swadisht Pani Puri ki jhalak</p>
+  <div class="gallery-grid">
+
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500&q=80" alt="Masala Puri"/>
+      <div class="overlay"><span>Masala Puri 🧆</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500&q=80" alt="Chaat"/>
+      <div class="overlay"><span>Special Chaat 🌶️</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=500&q=80" alt="Street Food"/>
+      <div class="overlay"><span>Street Flavors ✨</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <h2 class="section-title" style="text-align:center;">Hamara Menu 🍽️</h2>
+  <p class="section-sub" style="text-align:center;">Sabke liye kuch khaas — choose your favorite!</p>
+  <div class="menu-filter">
+    <button class="filter-btn active" onclick="filterMenu('all',this)">🍽️ All</button>
+    <button class="filter-btn" onclick="filterMenu('spicy',this)">🌶️ Spicy</button>
+    <button class="filter-btn" onclick="filterMenu('mild',this)">😊 Mild</button>
+    <button class="filter-btn" onclick="filterMenu('combo',this)">🎉 Combos</button>
+  </div>
+  <div class="menu-grid" id="menuGrid">
+    <div class="menu-card" data-cat="spicy">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" alt="Classic"/>
+        <span class="tag veg">VEG</span>
+      </div>
+      <div class="info">
+        <h3>Classic Pani Puri</h3>
+        <p>6 crispy puris, spicy green & meetha pani, aloo-chana filling</p>
+        <div class="bottom"><span class="price">₹20</span><span class="spice-tag">🌶️ Spicy</span></div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="spicy">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&q=80" alt="Mint"/>
+        <span class="tag veg">VEG</span>
+      </div>
+      <div class="info">
+        <h3>Mint Special Puri</h3>
+        <p>Extra minty green paani, nींबू aur adrak ka tadka</p>
+        <div class="bottom"><span class="price">₹25</span><span class="spice-tag">🌶️🌶️ Extra Spicy</span></div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="mild">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80" alt="Meetha"/>
+        <span class="tag veg">VEG</span>
+      </div>
+      <div class="info">
+        <h3>Meetha Pani Puri</h3>
+        <p>Imli ki meethi chutney wala paani — bachcho ka favourite!</p>
+        <div class="bottom"><span class="price">₹20</span><span class="spice-tag">😊 Mild</span></div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="mild">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&q=80" alt="Dahi"/>
+        <span class="tag veg">VEG</span>
+      </div>
+      <div class="info">
+        <h3>Dahi Puri</h3>
+        <p>Crispy puris, thandi dahi, chutneys aur masala sev</p>
+        <div class="bottom"><span class="price">₹30</span><span class="spice-tag">😊 Mild</span></div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="spicy">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" alt="Masala"/>
+        <span class="tag veg">VEG</span>
+      </div>
+      <div class="info">
+        <h3>Masala Puri</h3>
+        <p>Tooti puris, spicy ragda, pyaaz, tamatar aur chutneys</p>
+        <div class="bottom"><span class="price">₹30</span><span class="spice-tag">🌶️ Spicy</span></div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="combo">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" alt="Combo"/>
+        <span class="tag" style="background:var(--red);">BEST VALUE</span>
+      </div>
+      <div class="info">
+        <h3>Special Combo (12 pcs)</h3>
+        <p>Double serving, 3 types of paani — ultimate Pani Puri experience!</p>
+        <div class="bottom"><span class="price">₹40</span><span class="spice-tag">🌶️🌶️ Chatpata</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<section class="counters">
+  <h2 style="font-family:'Yatra One',cursive;font-size:38px;margin-bottom:8px;">Hamare Numbers Bolte Hain!</h2>
+  <div class="counter-grid">
+    <div class="counter-item"><div class="num" id="c1">0</div><div class="lbl">Happy Customers Daily</div></div>
+    <div class="counter-item"><div class="num" id="c2">0</div><div class="lbl">5-Star Reviews</div></div>
+    <div class="counter-item"><div class="num" id="c3">0</div><div class="lbl">Years in Business</div></div>
+    <div class="counter-item"><div class="num" id="c4">0</div><div class="lbl">Puris Served Daily</div></div>
+  </div>
+</section>
+
+<!-- RATINGS -->
+<section class="ratings" id="ratings">
+  <h2 class="section-title">Customer Ratings ⭐</h2>
+  <p class="section-sub">Humara kaam bolata hai — yeh rahi customers ki raaye!</p>
+  <div class="rating-summary">
+    <div>
+      <div class="big-score">4.8</div>
+      <div class="stars-big">⭐⭐⭐⭐⭐</div>
+      <div class="total-reviews">248 reviews ke aadhar par</div>
+    </div>
+    <div class="bars">
+      <div class="bar-row"><span class="bar-label">5⭐</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><span class="bar-count">211</span></div>
+      <div class="bar-row"><span class="bar-label">4⭐</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="bar-count">25</span></div>
+      <div class="bar-row"><span class="bar-label">3⭐</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="bar-count">8</span></div>
+      <div class="bar-row"><span class="bar-label">2⭐</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-count">3</span></div>
+      <div class="bar-row"><span class="bar-label">1⭐</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-count">1</span></div>
+    </div>
+  </div>
+
+  <div class="review-form">
+    <h3>✍️ Apni Review Likhen</h3>
+    <div class="star-select" id="starSelect">
+      <span onclick="setStars(1)">★</span>
+      <span onclick="setStars(2)">★</span>
+      <span onclick="setStars(3)">★</span>
+      <span onclick="setStars(4)">★</span>
+      <span onclick="setStars(5)">★</span>
+    </div>
+    <input type="text" id="reviewName" placeholder="Aapka Naam"/>
+    <textarea id="reviewText" placeholder="Aapka anubhav likhein..."></textarea>
+    <button onclick="submitReview()">✅ Review Submit Karein</button>
+    <p id="reviewMsg" style="color:var(--yellow);margin-top:12px;display:none;font-weight:700;">🎉 Shukriya! Aapki review publish ho gayi!</p>
+  </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+<section class="customer-reviews">
+  <h3>Customers Ki Raaye 💬</h3>
+  <div class="reviews-grid" id="reviewsGrid">
+    <div class="review-card">
+      <div class="reviewer">
+        <div class="avatar">R</div>
+        <div><div class="reviewer-name">Rahul Verma</div><div class="reviewer-date">May 2026</div></div>
+      </div>
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">kamla Nagar ka best Pani Puri! Mint wala paani toh ek dum gazab hai. Har weekend aata hoon yahin!</div>
+    </div>
+    <div class="review-card">
+      <div class="reviewer">
+        <div class="avatar">P</div>
+        <div><div class="reviewer-name">Ravi</div><div class="reviewer-date">May 2026</div></div>
+      </div>
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">Chhotelal ji ke haath ka khaana — kya kehne! Meetha puri mere bachcho ka favourite hai. Bahut saaf safai bhi hai.</div>
+    </div>
+    <div class="review-card">
+      <div class="reviewer">
+        <div class="avatar">A</div>
+        <div><div class="reviewer-name">Ankit</div><div class="reviewer-date">April 2026</div></div>
+      </div>
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">Dahi Puri out of the world thi! Taaze ingredients, asli swad aur bahut friendly owner. 10/10 recommend!</div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL OFFER -->
+<section class="offer">
+  <div class="offer-box">
+    <div class="discount">50% OFF!</div>
+    <h2>🎉 Special Opening Offer!</h2>
+    <p>Pehle 50 customers ko milega <strong>50% discount</strong> aur ek plate extra FREE!<br/>Jaldi aiye, offer limited time ke liye hai! Abhi call karein.</p>
+    <a href="tel:9918438523" class="btn-primary" style="display:inline-block;">📞 9918438523 Par Call Karein</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <h2>Hamare Paas Aaiye! 📍</h2>
+      <p>Ghar baithe order nhi kar sakte ho seedha stall par aaiye ur maja lijiye — hum 7 din, 4 baje se taiyaar hain aapka swagat karne ke liye!</p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="c-icon">👑</div>
+          <div><h4>Owner</h4><p>Mr. Chhotelal Gond</p></div>
+        </div>
+        <div class="contact-card">
+          <div class="c-icon">📞</div>
+          <div><h4>Call / WhatsApp</h4><p><a href="tel:9918438523">9918438523</a></p></div>
+        </div>
+        <div class="contact-card">
+          <div class="c-icon">📍</div>
+          <div><h4>Azamgarh</h4><p>Kamla Nagar, Azamgarh, Uttar Pradesh</p></div>
+        </div>
+        <div class="contact-card">
+          <div class="c-icon">🕓</div>
+          <div><h4>Timing</h4><p>4:00 PM – 10:00 PM | Roz Khula</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="map-box">
+      <div class="map-emoji">🗺️</div>
+      <p>Kamla Nagar, Azamgarh, Uttar Pradesh</p>
+      <a href="https://www.google.com/maps/place/Kamala+Nagar+Market/@25.8744319,82.9911726,17z/data=!4m14!1m7!3m6!1s0x3991b602702674bf:0x9255f6ea18727ecc!2sKamala+Nagar+Market!8m2!3d25.8744271!4d82.9937475!16s%2Fg%2F11fzf445lr!3m5!1s0x3991b602702674bf:0x9255f6ea18727ecc!8m2!3d25.8744271!4d82.9937475!16s%2Fg%2F11fzf445lr?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 Google Maps Par Dhundhen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo-ft">🫙 Pani Puri Wala</div>
+  <p>© 2026 <span>Mr. Chhotelal Gond</span> | Azamgarh,Uttar Pradesh |Kamla Nagar | 📞 9918438523</p>
+  <p style="margin-top:8px;">Made with ❤️ by <span>Ankit</span></p>
+</footer>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/919918438523" class="wa-float" target="_blank" title="WhatsApp par baat karein">💬</a>
+
+<script>
+// Star Rating
+let selectedStars = 0;
+function setStars(n){
+  selectedStars=n;
+  document.querySelectorAll('#starSelect span').forEach((s,i)=>s.classList.toggle('active',i<n));
+}
+
+// Review Submit
+function submitReview(){
+  const name=document.getElementById('reviewName').value.trim();
+  const text=document.getElementById('reviewText').value.trim();
+  if(!name||!text||selectedStars===0){alert('Kripya naam, rating aur review zaroor bharein!');return;}
+  const stars='⭐'.repeat(selectedStars);
+  const grid=document.getElementById('reviewsGrid');
+  const card=document.createElement('div');
+  card.className='review-card';
+  card.innerHTML=`
+    <div class="reviewer">
+      <div class="avatar">${name[0].toUpperCase()}</div>
+      <div><div class="reviewer-name">${name}</div><div class="reviewer-date">Abhi abhi</div></div>
+    </div>
+    <div class="review-stars">${stars}</div>
+    <div class="review-text">${text}</div>
+  `;
+  grid.prepend(card);
+  document.getElementById('reviewName').value='';
+  document.getElementById('reviewText').value='';
+  setStars(0);
+  const msg=document.getElementById('reviewMsg');
+  msg.style.display='block';
+  setTimeout(()=>msg.style.display='none',3500);
+}
+
+// Menu Filter
+function filterMenu(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.menu-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';
+  });
+}
+
+// Counter Animation
+function animateCounter(id,target,suffix=''){
+  let count=0;
+  const step=Math.ceil(target/60);
+  const el=document.getElementById(id);
+  const timer=setInterval(()=>{
+    count=Math.min(count+step,target);
+    el.textContent=count+(suffix||'');
+    if(count>=target)clearInterval(timer);
+  },30);
+}
+// Trigger on scroll
+const countersSection=document.querySelector('.counters');
+let counted=false;
+const observer=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!counted){
+    counted=true;
+    animateCounter('c1',500,'+');
+    animateCounter('c2',211,'');
+    animateCounter('c3',10,'+');
+    animateCounter('c4',3000,'+');
+  }
+});
+observer.observe(countersSection);
+</script>
+</body>
+</html>
